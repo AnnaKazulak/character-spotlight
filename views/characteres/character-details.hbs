@@ -1,0 +1,12 @@
+<h1>Welcome to character details</h1>
+
+<p>{{character.name}}</p>
+<p>{{character.occupation}}</p>
+<p>{{character.description}}</p>
+<p>{{character.quotes}}</p>
+<p>{{character.movie}}</p>
+<p>{{character.id}}</p>
+
+<form action="/characteres/{{character.id}}/delete" method="POST">
+  <button type="submit" class="btn btn-primary">Delete</button>
+</form>

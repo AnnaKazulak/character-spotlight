@@ -1,0 +1,10 @@
+<h1>Hallo Characters List</h1>
+
+{{#each characteresFromBD}}
+  <h2>{{this.name}}</h2>
+  <p>{{this.occupation}}</p>
+  <p>{{this.description}}</p>
+  <p>{{this.quotes}}</p>
+  <p>{{this.movie}}</p>
+  <a href="/characteres/{{this._id}}">See details</a>
+{{/each}}
