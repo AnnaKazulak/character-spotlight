@@ -19,7 +19,7 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">CharacterSpotlight</a>
+          <a class="navbar-brand" href="/">CharacterSpotlight</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -49,7 +49,7 @@
               </li>
 
             </ul>
-            <form class="d-flex" role="search">
+            {{! <form class="d-flex" role="search">
               <input
                 class="form-control me-2"
                 type="search"
@@ -60,18 +60,22 @@
                 class="btn btn-outline-success"
                 type="submit"
               >Search</button>
-            </form>
+            </form> }}
             <form class="d-flex" role="login">
-              {{! <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              /> }}
-              <button
+
+              <a
                 class="btn btn-outline-success"
-                type="submit"
-              >Login</button>
+                role="button"
+                href="/signup"
+              >Sign Up</a>
+              <a
+                class="btn btn-outline-success"
+                role="button"
+                href="/login"
+              >Login</a>
+            </form>
+            <form action="/logout" method="POST">
+              <button class="btn btn-danger">Logout</button>
             </form>
 
           </div>

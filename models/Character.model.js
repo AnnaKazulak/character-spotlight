@@ -7,6 +7,7 @@ const characterSchema = new Schema(
     description: String,
     quotes: String,
     movie: String, // one to many
+    imageUrl: String
   },
   {
     timestamps: true,

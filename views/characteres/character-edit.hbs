@@ -1,5 +1,10 @@
-<h2>Hallo new character</h2>
-<form action="/characteres/create" method="POST" enctype="multipart/form-data">
+<h2>Update the character</h2>
+
+<form
+  action="/characteres/{{character._id}}/edit"
+  method="POST"
+  enctype="multipart/form-data"
+>
 
   <div class="mb-3">
     <label for="name" class="form-label">Name</label>
@@ -9,17 +14,16 @@
       id="name"
       placeholder="name"
       name="name"
+      value="{{character.name}}"
     />
   </div>
-    <div class="mb-3">
-    <label for="image" class="form-label">image</label>
-    <input
-      type="file"
-      class="form-control-file"
-      id="image"
-      placeholder="image"
-      name="character-image"
-    />
+  
+  <div class="mb-3">
+    <label>Image:
+      <img src="{{character.imageUrl}}" alt="{{character.name}}">
+      <input type="file" name="character-image" class="form-control-file" />
+      <input type="text" name="existingImage" hidden value="{{character.imageUrl}}" />
+    </label>
   </div>
   <div class="mb-3">
     <label for="occupation" class="form-label">occupation</label>
@@ -29,6 +33,7 @@
       id="occupation"
       placeholder="occupation"
       name="occupation"
+      value="{{character.occupation}}"
     />
   </div>
   <div class="mb-3">
@@ -38,7 +43,7 @@
       id="description"
       rows="3"
       name="description"
-    ></textarea>
+    >{{character.description}}</textarea>
   </div>
   <div class="mb-3">
     <label for="quotes" class="form-label">quotes</label>
@@ -47,7 +52,7 @@
       id="quotes"
       rows="3"
       name="quotes"
-    ></textarea>
+    >{{character.quotes}}</textarea>
   </div>
 
   <div class="mb-3">
@@ -58,6 +63,7 @@
       id="movie"
       placeholder="movie"
       name="movie"
+      value="{{character.movie}}"
     />
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>

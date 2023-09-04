@@ -3,8 +3,16 @@
 {{#each characteresFromBD}}
   <h2>{{this.name}}</h2>
   <p>{{this.occupation}}</p>
-  <p>{{this.description}}</p>
-  <p>{{this.quotes}}</p>
   <p>{{this.movie}}</p>
-  <a href="/characteres/{{this._id}}">See details</a>
+  <img src="{{this.imageUrl}}" alt="{{this.name}}">
+  <a
+    class="btn btn-outline-success"
+    role="button"
+    href="/characteres/{{this._id}}"
+  >See details</a>
+  <a
+    class="btn btn-outline-success"
+    role="button"
+    href="/characteres/{{this._id}}/edit"
+  >edit</a>
 {{/each}}
