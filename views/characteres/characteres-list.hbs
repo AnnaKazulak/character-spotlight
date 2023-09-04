@@ -1,18 +1,29 @@
 <h1>Hallo Characters List</h1>
 
-{{#each characteresFromBD}}
-  <h2>{{this.name}}</h2>
-  <p>{{this.occupation}}</p>
-  <p>{{this.movie}}</p>
-  <img src="{{this.imageUrl}}" alt="{{this.name}}">
-  <a
-    class="btn btn-outline-success"
-    role="button"
-    href="/characteres/{{this._id}}"
-  >See details</a>
-  <a
-    class="btn btn-outline-success"
-    role="button"
-    href="/characteres/{{this._id}}/edit"
-  >edit</a>
-{{/each}}
+<div class="container">
+  <div class="row">
+    {{#each characteresFromBD}}
+      <div class="card list-card col-sm-12 col-md-6 col-lg-4">
+      {{#if this.imageUrl}}
+           <img src="{{this.imageUrl}}" alt="{{this.name}}" class="card-img-top card-img-custom"/>
+       {{else}}   
+           <img src="/images/Star_Wars_Logo.png" alt="" class="card-img-top card-img-custom"/>
+       {{/if}}    
+        <div class="card-body">
+          <h5 class="card-title">{{this.name}}</h5>
+          <p>{{this.occupation}}</p>
+          <p>{{this.movie}}</p>
+          <a
+            class="btn btn-outline-success"
+            role="button"
+            href="/characteres/{{this._id}}"
+          >See details</a>
+          <a
+            class="btn btn-outline-success"
+            role="button"
+            href="/characteres/{{this._id}}/edit"
+          >edit</a>
+        </div>
+      </div>
+    {{/each}}
+</div>
