@@ -30,7 +30,7 @@ body {
 }
 
 .nav-custom {
-  height: 12vh;
+  /* height: 12vh; */
   background-color: #454851;
   position: sticky;
   top: 0;
