@@ -8,12 +8,26 @@ router.get("/characteres/create", isLoggedIn, (req, res) =>
   res.render("characteres/create-character")
 );
 
+// create character
 router.post(
   "/characteres/create",
   fileUploader.single("character-image"),
   isLoggedIn,
   (req, res, next) => {
-    // console.log(req.body);
+    const { name, occupation } = req.body;
+    if (name === "" || occupation === "") {
+      res.status(400).render("characteres/create-character", {
+        errorMessage: "This field is mandatory.",
+      });
+
+      return;
+    }
+
+    if (!req.file) {
+      req.file = { path: "" };
+      req.file.path =
+        "https://www.google.com/search?q=starwars&sca_esv=562731675&rlz=1C1CHBD_deDE870DE870&tbm=isch&sxsrf=AB5stBiQynD6L1fKf0dxoQ1CwvDwKeFwNg:1693915142203&source=lnms&sa=X&ved=2ahUKEwiP9tHStZOBAxXpgf0HHQZtCg4Q_AUoAXoECAMQAw&biw=1745&bih=846&dpr=1.1#imgrc=eQt1KzluFOcgqM";
+    }
     const newCharacter = {
       name: req.body.name,
       occupation: req.body.occupation,
@@ -36,12 +50,31 @@ router.post(
   }
 );
 
-// display character list
 router.get("/characteres", (req, res, next) => {
-  Character.find().then((characteresFromBD) => {
-    console.log(characteresFromBD);
-    res.render("characteres/characteres-list", { characteresFromBD });
-  });
+  const searchQuery = req.query.search;
+
+  if (searchQuery) {
+    // If a search query is provided:
+    Character.find({ name: { $regex: searchQuery, $options: "i" } })
+      .then((characteresFromBD) => {
+        res.render("characteres/characteres-list", {
+          characteresFromBD,
+          searchQuery,
+        });
+      })
+      .catch((e) => {
+        console.log("error searching characters", e);
+      });
+  } else {
+    // If no search query, display all characters
+    Character.find()
+      .then((characteresFromBD) => {
+        res.render("characteres/characteres-list", { characteresFromBD });
+      })
+      .catch((e) => {
+        console.log("error fetching characters", e);
+      });
+  }
 });
 
 // see details character
@@ -86,6 +119,13 @@ router.post(
     const characterId = req.params.id;
     const { name, occupation, description, quotes, movie, existingImage } =
       req.body;
+    if (name === "" || occupation === "") {
+      res.status(400).render("characteres/create-character", {
+        errorMessage: "This field is mandatory.",
+      });
+
+      return;
+    }
 
     let imageUrl;
     if (req.file) {

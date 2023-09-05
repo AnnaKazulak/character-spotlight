@@ -1,70 +1,92 @@
-<h2>Update the character</h2>
+<div class="container">
+  <h2>Update the character</h2>
 
-<form
-  action="/characteres/{{character._id}}/edit"
-  method="POST"
-  enctype="multipart/form-data"
->
+  <form
+    action="/characteres/{{character._id}}/edit"
+    method="POST"
+    enctype="multipart/form-data"
+    class="center-form"
+  >
 
-  <div class="mb-3">
-    <label for="name" class="form-label">Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="name"
-      placeholder="name"
-      name="name"
-      value="{{character.name}}"
-    />
-  </div>
-  
-  <div class="mb-3">
-    <label>Image:
-      <img src="{{character.imageUrl}}" alt="{{character.name}}">
-      <input type="file" name="character-image" class="form-control-file" />
-      <input type="text" name="existingImage" hidden value="{{character.imageUrl}}" />
-    </label>
-  </div>
-  <div class="mb-3">
-    <label for="occupation" class="form-label">occupation</label>
-    <input
-      type="text"
-      class="form-control"
-      id="occupation"
-      placeholder="occupation"
-      name="occupation"
-      value="{{character.occupation}}"
-    />
-  </div>
-  <div class="mb-3">
-    <label for="description" class="form-label">description</label>
-    <textarea
-      class="form-control"
-      id="description"
-      rows="3"
-      name="description"
-    >{{character.description}}</textarea>
-  </div>
-  <div class="mb-3">
-    <label for="quotes" class="form-label">quotes</label>
-    <textarea
-      class="form-control"
-      id="quotes"
-      rows="3"
-      name="quotes"
-    >{{character.quotes}}</textarea>
-  </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="name"
+        name="name"
+        value="{{character.name}}"
+      />
+    </div>
+    {{#if errorMessage}}
+      <p class="error text-danger">{{errorMessage}}</p>
+    {{/if}}
+    <div class="mb-3 mt-3 img-container-custom">
+      <label>
+        <img
+          src="{{character.imageUrl}}"
+          alt="{{character.name}}"
+          class="mb-3"
+        />
+        <input type="file" name="character-image" class="form-control-file" />
+        <input
+          type="text"
+          name="existingImage"
+          hidden
+          value="{{character.imageUrl}}"
+        />
+      </label>
+    </div>
+    <div class="mb-3">
+      <label for="occupation" class="form-label">Occupation</label>
+      <input
+        type="text"
+        class="form-control"
+        id="occupation"
+        placeholder="occupation"
+        name="occupation"
+        value="{{character.occupation}}"
+      />
+    </div>
+    {{#if errorMessage}}
+      <p class="error text-danger">{{errorMessage}}</p>
+    {{/if}}
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        rows="3"
+        name="description"
+      >{{character.description}}</textarea>
+    </div>
+    <div class="mb-3">
+      <label for="quotes" class="form-label">Quotes</label>
+      <textarea
+        class="form-control"
+        id="quotes"
+        rows="3"
+        name="quotes"
+      >{{character.quotes}}</textarea>
+    </div>
 
-  <div class="mb-3">
-    <label for="movie" class="form-label">movie</label>
-    <input
-      type="text"
-      class="form-control"
-      id="movie"
-      placeholder="movie"
-      name="movie"
-      value="{{character.movie}}"
-    />
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <div class="mb-3">
+      <label for="movie" class="form-label">Movie</label>
+      <input
+        type="text"
+        class="form-control"
+        id="movie"
+        placeholder="movie"
+        name="movie"
+        value="{{character.movie}}"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a
+      class="btn btn-outline-success"
+      role="button"
+      href="/characteres"
+    >Cancle</a>
+  </form>
+</div>
