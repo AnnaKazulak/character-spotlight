@@ -7,11 +7,6 @@ body {
 }
 
 
-@media (min-width: 768px) {
-  .search-custom {
-    width: 25vw;
-  }
-}
 
 .card-img-custom {
   width: 100%;
@@ -45,3 +40,35 @@ body {
 }
 
 
+
+
+
+/* Small screens */
+@media (max-width: 767px) {
+  .search-custom {
+    width: 80%;
+  }
+  .card-custom {
+    width: 100%;
+  }
+}
+
+/* Medium screens */
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-custom {
+    width: 90%;
+  }
+  .card-custom {
+    width: 45%;
+  }
+}
+
+/* Large screens and up */
+@media (min-width: 992px) {
+  .search-custom {
+    width: 25vw;
+  }
+  .card-custom {
+    width: 30%;
+  }
+}
