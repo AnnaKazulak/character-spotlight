@@ -10,7 +10,7 @@
     name="search"
   />
   <button
-  class="btn btn-outline-success"
+  class="btn btn-outline-success me-2"
   type="submit"
   >Search</button>
       <a class="btn btn-outline-success" role="button" href="/characteres">All</a>
@@ -19,19 +19,19 @@
   <div class="row">
     {{#each characteresFromBD}}
    
-      <div class="card list-card col-sm-12 col-md-6 col-lg-4 gx-2 m-3 card-custom p-0">
+      <div class="card list-card col-sm-12 col-md-6 col-lg-4 gx-2 m-3 card-custom p-0 shadow mb-5 bg-body rounded">
            <img src="{{this.imageUrl}}" alt="{{this.name}}" class="card-img-top card-img-custom"/>
         <div class="card-body">
           <h5 class="card-title">{{this.name}}</h5>
           <p>{{this.occupation}}</p>
           <p>{{this.movie}}</p>
           <a
-            class="btn btn-outline-success"
+            class="btn btn btn-secondary"
             role="button"
             href="/characteres/{{this._id}}"
           >See details</a>
           <a
-            class="btn btn-outline-success"
+            class="btn btn btn-secondary"
             role="button"
             href="/characteres/{{this._id}}/edit"
           >edit</a>
