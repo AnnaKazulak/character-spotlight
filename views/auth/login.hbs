@@ -1,39 +1,5 @@
-{{! <div class="container"> }}
-{{!-- <div id="login-form" class="container">
-  <h2>Log In</h2>
-  <form action="/login" method="POST" class="center-form">
-
-    <div class="row">
-      <div class="mb-3">
-        <label>
-          Username
-          <input type="text" name="username" placeholder="Your username" />
-        </label>
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label>
-        Email
-        <input type="email" name="email" placeholder="Your email" />
-      </label>
-    </div>
-    <div class="mb-3">
-      <label>
-        Password
-        <input type="password" name="password" placeholder="Your password" />
-      </label>
-    </div>
-    <button type="submit">Log In</button>
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div> --}}
-{{! </div> }}
 <div class="container">
-  <form class="center-form" action="/login" method="POST" class="center-form">
+  <form class="center-form" action="/auth/login" method="POST" class="center-form">
     <div class="mb-3">
       <label for="username" class="form-label">Username<span
           class="text-danger"

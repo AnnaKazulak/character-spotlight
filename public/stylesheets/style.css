@@ -25,7 +25,6 @@ body {
 }
 
 .nav-custom {
-  /* height: 12vh; */
   background-color: #454851;
   position: sticky;
   top: 0;
@@ -37,20 +36,20 @@ body {
  background-color: #454851;
  position: sticky;
  top: 0;
+ margin: 0;
+ padding: 0;
+ border: none;
 }
-
-
-
-
 
 /* Small screens */
 @media (max-width: 767px) {
   .search-custom {
-    width: 80%;
+    width: 85%;
   }
   .card-custom {
     width: 100%;
   }
+
 }
 
 /* Medium screens */
