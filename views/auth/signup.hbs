@@ -1,4 +1,6 @@
 <div class="container">
+  <p>Create an account here</p>
+
   <form class="center-form" action="/auth/signup" method="POST" class="center-form">
     <div class="mb-3">
       <label for="username" class="form-label">Username<span
@@ -38,6 +40,7 @@
     {{#if errorMessage}}
       <p class="error text-danger">{{errorMessage}}</p>
     {{/if}}
+      <p>you'll be redirected to the login page</p>
     <button type="submit" class="btn btn-primary">Sign Up</button>
   </form>
 </div>

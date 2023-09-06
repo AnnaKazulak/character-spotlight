@@ -23,13 +23,27 @@ const projectName = "CharacterSpotlight";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
+// set res.locals based on user's authentication status
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  res.locals.userName = req.session.currentUser
+    ? req.session.currentUser.username
+    : null;
+  res.locals.email = req.session.currentUser
+    ? req.session.currentUser.email
+    : null;
+  res.locals.username = req.session.username
+    ? req.session.currentUser.username
+    : null;
+  next();
+});
+
 // 👇 Start handling routes here
 app.use("/", require("./routes/index.routes"));
 
 app.use("/auth", require("./routes/auth.routes"));
 
 app.use("/", require("./routes/characteres.routes"));
-
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

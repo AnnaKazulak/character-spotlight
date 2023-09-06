@@ -21,9 +21,7 @@
   </head>
 
   <body>
-
     <div class="div-custom"></div>
-
     <nav class="navbar navbar-expand-lg navbar-light nav-custom mb-3 px-5">
       <div class="container-fluid">
         <a class="navbar-brand text-white fs-3" href="/">CharacterSpotlight</a>
@@ -47,29 +45,32 @@
               >Characters</a>
             </li>
             <a
-              class="nav-link text-white fs-5 "
+              class="nav-link text-white fs-5"
               href="/characteres/create"
             >Create Character</a>
-
           </ul>
-          <div class="col d-flex justify-content-end align-items-center">
-            <form role="login">
-              <a
-                class="btn btn-outline-success mx-2"
-                role="button"
-                href="/auth/signup"
-              >Sign Up</a>
-              <a
-                class="btn btn-outline-success mx-2"
-                role="button"
-                href="/auth/login"
-              >Login</a>
-            </form>
-            <form action="/auth/logout" method="POST">
-              <button class="btn btn-danger">Logout</button>
-            </form>
-          </div>
 
+          <div class="col d-flex justify-content-end align-items-center gap-3">
+            {{#if session.currentUser}}
+              <p class="text-white">Hi {{userName}}</p>
+              <form action="/auth/logout" method="POST">
+                <button class="btn btn-danger">Logout</button>
+              </form>
+            {{else}}
+              <form role="login">
+                <a
+                  class="btn btn-secondary mx-2"
+                  role="button"
+                  href="/auth/signup"
+                >Sign Up</a>
+                <a
+                  class="btn btn-secondary mx-2"
+                  role="button"
+                  href="/auth/login"
+                >Login</a>
+              </form>
+            {{/if}}
+          </div>
         </div>
       </div>
     </nav>

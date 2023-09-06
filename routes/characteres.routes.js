@@ -37,7 +37,7 @@ router.post(
       imageUrl: req.file.path,
     };
 
-    console.log("req.file", req.file);
+    // console.log("req.file", req.file);
     Character.create(newCharacter)
       .then((newCharacter) => {
         console.log(newCharacter);
@@ -50,6 +50,7 @@ router.post(
   }
 );
 
+// display characters list
 router.get("/characteres", (req, res, next) => {
   const searchQuery = req.query.search;
 
