@@ -1,0 +1,72 @@
+<div class="container">
+  <h2>Update the movie</h2>
+  <form
+    action="/movie/{{movie._id}}/edit"
+    method="POST"
+    enctype="multipart/form-data"
+    class="center-form"
+  >
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Title<span
+          class="text-danger"
+        >*</span>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        placeholder="title"
+        name="title"
+        value="{{movie.title}}"
+      />
+    </div>
+    {{#if errorMessage}}
+      <p class="error text-danger">{{errorMessage}}</p>
+    {{/if}}
+
+    <div class="mb-3 mt-3 img-container-custom">
+      <label>
+        <img src="{{movie.imageUrl}}" alt="{{movie.title}}" class="mb-3" />
+        <input type="file" name="movie-cover-image" class="form-control-file" />
+        <input
+          type="text"
+          name="existingImageMovie"
+          hidden
+          value="{{movie.imageUrl}}"
+        />
+      </label>
+    </div>
+
+    <div class="mb-3">
+      <label for="plot" class="form-label">What is it about</label>
+      <textarea
+        class="form-control"
+        id="plot"
+        rows="3"
+        name="plot"
+      >{{movie.plot}}</textarea>
+    </div>
+    <div class="mb-3">
+      <label for="characters" class="form-label">
+        Characters
+        <select name="characters" class="form-select select-custom" multiple>
+          {{#each characters}}
+            <option
+              aria-describedby="multiSelectHelp"
+              value={{_id}}
+            >{{name}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <div id="multiSelectHelp" class="form-text">To choose more then one hold
+        CTRL.</div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-5">Save</button>
+    <a
+      class="btn btn-outline-success mb-5"
+      role="button"
+      href="/movies"
+    >cancel</a>
+  </form>
+</div>

@@ -43,7 +43,8 @@ app.use("/", require("./routes/index.routes"));
 
 app.use("/auth", require("./routes/auth.routes"));
 
-app.use("/", require("./routes/characteres.routes"));
+app.use("/", require("./routes/characters.routes"));
+app.use("/", require("./routes/movies.routes"));
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

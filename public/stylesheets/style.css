@@ -41,6 +41,12 @@ body {
   border: none;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0; 
+  margin: 0; 
+}
+
 /* Small screens */
 @media (max-width: 767px) {
   .search-custom {
@@ -81,7 +87,7 @@ body {
 }
 
 
-/* ------- */
+/* ---homepage animation---- */
 
 
 .section-one {

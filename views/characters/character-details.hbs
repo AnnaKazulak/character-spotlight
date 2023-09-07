@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="fs-3">{{character.name}}</p>
+      <p class="fs-4">{{character.occupation}}</p>
+      <p>{{character.description}}</p>
+      <p>{{character.movie}}</p>
+      <div class="d-flex justify-content-start">
+        <form action="/characters/{{character._id}}/edit">
+          <button type="submit" class="btn btn-secondary">Edit</button>
+        </form>
+        <form action="/characters/{{character._id}}/delete" method="POST">
+
+          <button
+            id="deleteButton"
+            type="submit"
+            class="btn btn-danger mx-4"
+          >Delete</button>
+        </form>
+        <form>
+          <a
+            class="btn btn-outline-success"
+            role="button"
+            href="/characters"
+          >cancel</a>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+
+      <img
+        src="{{character.imageUrl}}"
+        alt="{{character.name}}"
+        class="img-fluid shadow-lg mb-5 bg-body rounded"
+      />
+
+      <p class="mt-4">{{character.quotes}}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <h1>{{movie.title}}</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <p class="fs-3">{{movie.title}}</p>
+      <p class="fs-4">{{movie.genre}}</p>
+      <p>{{movie.plot}}</p>
+
+      <div class="d-flex justify-content-start">
+        <form action="/movie/{{movie._id}}/edit">
+          <button type="submit" class="btn btn-secondary">Edit</button>
+        </form>
+        <form action="/movie/{{movie._id}}/delete" method="POST">
+
+          <button
+            id="deleteButton"
+            type="submit"
+            class="btn btn-danger mx-4"
+          >Delete</button>
+        </form>
+        <form>
+          <a
+            class="btn btn-outline-success"
+            role="button"
+            href="/movies"
+          >cancel</a>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <img
+        src="{{movie.imageUrl}}"
+        alt="{{movie.name}}"
+        class="img-fluid shadow-lg mb-5 bg-body rounded"
+      />
+      <ul>
+        {{#each movie.characters}}
+          <li>{{this.name}}</li>
+        {{/each}}
+      </ul>
+
+    </div>
+  </div>
+</div>
+

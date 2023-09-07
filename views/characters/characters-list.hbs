@@ -1,0 +1,42 @@
+
+<div class="container">
+<h1>Hallo Characters List</h1>
+<form class="d-flex search-custom" role="search">
+    <input
+    class="form-control me-2 "
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+    name="search"
+  />
+  <button
+  class="btn btn-outline-success me-2"
+  type="submit"
+  >Search</button>
+      <a class="btn btn-outline-success" role="button" href="/characters">All</a>
+
+</form> 
+  <div class="row">
+    {{#each charactersFromBD}}
+   
+      <div class="card list-card col-sm-12 col-md-6 col-lg-4 gx-2 m-3 card-custom p-0 shadow mb-5 bg-body rounded">
+           <img src="{{this.imageUrl}}" alt="{{this.name}}" class="card-img-top card-img-custom"/>
+        <div class="card-body">
+          <h5 class="card-title fs-3">{{this.name}}</h5>
+          <p>{{this.occupation}}</p>
+          <p>{{this.movie}}</p>
+          <a
+            class="btn btn btn-secondary"
+            role="button"
+            href="/characters/{{this._id}}"
+          >See details</a>
+          <a
+            class="btn btn btn-secondary"
+            role="button"
+            href="/characters/{{this._id}}/edit"
+          >edit</a>
+        </div>
+      </div>
+
+    {{/each}}
+</div>

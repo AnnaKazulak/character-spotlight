@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>My be the <span class=" fw-bolder">create movie</span>  force be with you</h2>
+
+  <form
+    action="/movies/create"
+    method="POST"
+    enctype="multipart/form-data"
+    class="center-form"
+  >
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Title
+        <span class="text-danger">*</span></label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        placeholder="title"
+        name="title"
+      />
+    </div>
+    {{#if errorMessage}}
+      <p class="error text-danger">{{errorMessage}}</p>
+    {{/if}}
+    <div class="mb-3">
+      <label required for="image" class="form-label">Image</label>
+      <input
+        type="file"
+        class="form-control-file"
+        id="image"
+        placeholder="image"
+        name="movie-cover-image"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="plot" class="form-label">What is it about</label>
+      <textarea class="form-control" id="plot" rows="3" name="plot"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="characters" class="form-label">
+        Characters
+        <select name="characters" class="form-select select-custom" multiple>
+          {{#each characters}}
+            <option  aria-describedby="multiSelectHelp" value={{_id}}>{{name}}</option>
+          {{/each}}
+        </select>
+      </label>
+        <div id="multiSelectHelp" class="form-text">To choose more then one hold CTRL.</div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-5">Create</button>
+    <a
+      class="btn btn-outline-success mb-5"
+      role="button"
+      href="/characters"
+    >Cancel</a>
+  </form>
+</div>

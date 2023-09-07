@@ -4,19 +4,19 @@ const router = require("express").Router();
 const fileUploader = require("../config/cloudinary.config");
 
 // displays a form
-router.get("/characteres/create", isLoggedIn, (req, res) =>
-  res.render("characteres/create-character")
+router.get("/characters/create", isLoggedIn, (req, res) =>
+  res.render("characters/create-character")
 );
 
 // create character
 router.post(
-  "/characteres/create",
+  "/characters/create",
   fileUploader.single("character-image"),
   isLoggedIn,
   (req, res, next) => {
     const { name, occupation } = req.body;
     if (name === "" || occupation === "") {
-      res.status(400).render("characteres/create-character", {
+      res.status(400).render("characters/create-character", {
         errorMessage: "This field is mandatory.",
       });
 
@@ -37,11 +37,9 @@ router.post(
       imageUrl: req.file.path,
     };
 
-    // console.log("req.file", req.file);
     Character.create(newCharacter)
       .then((newCharacter) => {
-        console.log(newCharacter);
-        res.redirect("/characteres");
+        res.redirect("/characters");
       })
       .catch((e) => {
         console.log("error creating new character", e);
@@ -51,15 +49,15 @@ router.post(
 );
 
 // display characters list
-router.get("/characteres", (req, res, next) => {
+router.get("/characters", (req, res, next) => {
   const searchQuery = req.query.search;
 
   if (searchQuery) {
     // If a search query is provided:
     Character.find({ name: { $regex: searchQuery, $options: "i" } })
-      .then((characteresFromBD) => {
-        res.render("characteres/characteres-list", {
-          characteresFromBD,
+      .then((charactersFromBD) => {
+        res.render("characters/characters-list", {
+          charactersFromBD,
           searchQuery,
         });
       })
@@ -69,8 +67,8 @@ router.get("/characteres", (req, res, next) => {
   } else {
     // If no search query, display all characters
     Character.find()
-      .then((characteresFromBD) => {
-        res.render("characteres/characteres-list", { characteresFromBD });
+      .then((charactersFromBD) => {
+        res.render("characters/characters-list", { charactersFromBD });
       })
       .catch((e) => {
         console.log("error fetching characters", e);
@@ -78,8 +76,8 @@ router.get("/characteres", (req, res, next) => {
   }
 });
 
-// see details character
-router.get("/characteres/:Id", isLoggedIn, (req, res, next) => {
+// display details character
+router.get("/characters/:Id", isLoggedIn, (req, res, next) => {
   const characterId = req.params.Id;
 
   Character.findById(characterId)
@@ -87,7 +85,7 @@ router.get("/characteres/:Id", isLoggedIn, (req, res, next) => {
       const data = {
         character: characterFromDB,
       };
-      res.render("characteres/character-details", data);
+      res.render("characters/character-details", data);
     })
     .catch((e) => {
       console.log("error at character details ", e);
@@ -95,15 +93,14 @@ router.get("/characteres/:Id", isLoggedIn, (req, res, next) => {
 });
 
 // display edit form
-router.get("/characteres/:id/edit", isLoggedIn, (req, res, next) => {
+router.get("/characters/:id/edit", isLoggedIn, (req, res, next) => {
   const characterId = req.params.id;
   Character.findById(characterId)
     .then((characterFromDB) => {
       const data = {
         character: characterFromDB,
       };
-      console.log(data);
-      res.render("characteres/character-edit", data);
+      res.render("characters/character-edit", data);
     })
 
     .catch((e) => {
@@ -113,7 +110,7 @@ router.get("/characteres/:id/edit", isLoggedIn, (req, res, next) => {
 
 // edit character
 router.post(
-  "/characteres/:id/edit",
+  "/characters/:id/edit",
   fileUploader.single("character-image"),
   isLoggedIn,
   (req, res, next) => {
@@ -121,7 +118,7 @@ router.post(
     const { name, occupation, description, quotes, movie, existingImage } =
       req.body;
     if (name === "" || occupation === "") {
-      res.status(400).render("characteres/create-character", {
+      res.status(400).render("characters/create-character", {
         errorMessage: "This field is mandatory.",
       });
 
@@ -140,8 +137,7 @@ router.post(
       { new: true }
     )
       .then((editedCharacter) => {
-        console.log(editedCharacter);
-        res.redirect(`/characteres/${characterId}`);
+        res.redirect(`/characters/${characterId}`);
       })
       .catch((e) => {
         console.log("error at character edit ", e);
@@ -150,11 +146,11 @@ router.post(
 );
 
 // delete character
-router.post("/characteres/:Id/delete", (req, res, next) => {
+router.post("/characters/:Id/delete", isLoggedIn, (req, res, next) => {
   const characterId = req.params.Id;
   Character.findByIdAndDelete(characterId)
     .then((characterToDelete) => {
-      res.redirect("/characteres");
+      res.redirect("/characters");
     })
     .catch((e) => {
       console.log("error at character details ", e);

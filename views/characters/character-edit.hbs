@@ -1,45 +1,52 @@
 <div class="container">
-  <h2>May the Force be with you</h2>
+  <h2>Update the character</h2>
+
   <form
-    action="/characteres/create"
+    action="/characters/{{character._id}}/edit"
     method="POST"
     enctype="multipart/form-data"
     class="center-form"
   >
 
     <div class="mb-3">
-      <label  for="name" class="form-label">Name
-        <span class="text-danger">*</span></label>
+      <label for="name" class="form-label">Name</label>
       <input
         type="text"
         class="form-control"
         id="name"
         placeholder="name"
         name="name"
+        value="{{character.name}}"
       />
     </div>
     {{#if errorMessage}}
       <p class="error text-danger">{{errorMessage}}</p>
     {{/if}}
-    <div class="mb-3">
-      <label required for="image" class="form-label">Image</label>
-      <input
-        type="file"
-        class="form-control-file"
-        id="image"
-        placeholder="image"
-        name="character-image"
-      />
+    <div class="mb-3 mt-3 img-container-custom">
+      <label>
+        <img
+          src="{{character.imageUrl}}"
+          alt="{{character.name}}"
+          class="mb-3"
+        />
+        <input type="file" name="character-image" class="form-control-file" />
+        <input
+          type="text"
+          name="existingImage"
+          hidden
+          value="{{character.imageUrl}}"
+        />
+      </label>
     </div>
     <div class="mb-3">
-      <label for="occupation" class="form-label">Occupation
-        <span class="text-danger">*</span></label>
+      <label for="occupation" class="form-label">Occupation</label>
       <input
         type="text"
         class="form-control"
         id="occupation"
         placeholder="occupation"
         name="occupation"
+        value="{{character.occupation}}"
       />
     </div>
     {{#if errorMessage}}
@@ -52,7 +59,7 @@
         id="description"
         rows="3"
         name="description"
-      ></textarea>
+      >{{character.description}}</textarea>
     </div>
     <div class="mb-3">
       <label for="quotes" class="form-label">Quotes</label>
@@ -61,7 +68,7 @@
         id="quotes"
         rows="3"
         name="quotes"
-      ></textarea>
+      >{{character.quotes}}</textarea>
     </div>
 
     <div class="mb-3">
@@ -72,13 +79,14 @@
         id="movie"
         placeholder="movie"
         name="movie"
+        value="{{character.movie}}"
       />
     </div>
-    <button type="submit" class="btn btn-primary mb-5">Create</button>
+    <button type="submit" class="btn btn-primary mb-5">Save</button>
     <a
       class="btn btn-outline-success mb-5"
       role="button"
-      href="/characteres"
-    >Cancel</a>
+      href="/characters"
+    >cancel</a>
   </form>
 </div>
