@@ -1,13 +1,13 @@
 # Description
 CharacterSpotlight is a web application focused on Star Wars characters and movies. It allows users to view a list of Star Wars characters and movies. Additionally, logged-in users can create, update, and delete characters and movies. When creating a movie, users can select characters from the existing character list, which is stored in the application's database.
 
-How to Run the Application Locally
+## How to Run the Application Locally
 Follow these steps to run CharacterSpotlight on your computer:
 
 ## 1. Clone the Repository
 
    ```bash
-    git clone https://github.com/your-username/CharacterSpotlight.git
+    git clone https://github.com/AnnaKazulak/CharacterSpotlight.git
     cd CharacterSpotlight
    ```
 ## 2. Install Dependencies
